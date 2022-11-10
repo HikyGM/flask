@@ -33,42 +33,50 @@
                 <div class="register-box bg-white box-shadow border-radius-10">
                     <div class="wizard-content">
                         <form class="tab-wizard2 wizard-circle wizard" method="post" action="register">
+                            {{ form.hidden_tag() }}
                             <div class="form-wrap max-width-600 mx-auto">
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Email*</label>
                                     <div class="col-sm-8">
-                                        <input type="email" class="form-control" name="email" style="{{error_email}}"/>
+                                        {{ form.email(type="email", class="form-control", placeholder="qwe") }}
+                                        <!--                                        <input type="email" class="form-control" name="email" style=""/>-->
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Логин*</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" name="login"/>
+                                        {{ form.login(type="text", class="form-control", placeholder="qwe") }}
+                                        <!--                                        <input type="text" class="form-control" name="login"/>-->
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Пароль*</label>
                                     <div class="col-sm-8">
-                                        <input type="password" class="form-control" name="password" style="{{ error_pass }}" />
+                                        {{ form.password(type="password", class="form-control", placeholder="qwe") }}
+                                        <!--                                        <input type="password" class="form-control" name="password" style="" />-->
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Подтвердите пароль*</label>
                                     <div class="col-sm-8">
-                                        <input type="password" class="form-control" name="r_password" style="{{ error_pass }}" />
+                                        {{ form.password_again(type="password", class="form-control", placeholder="qwe")
+                                        }}
+                                        <!--                                        <input type="password" class="form-control" name="r_password" style="{{ error_pass }}" />-->
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Имя*</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" name="first_name"/>
+                                        {{ form.first_name(type="text", class="form-control", placeholder="qwe") }}
+                                        <!--                                        <input type="text" class="form-control" name="first_name"/>-->
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Фамилия*</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" name="last_name"/>
+                                        {{ form.last_name(type="text", class="form-control", placeholder="qwe") }}
+                                        <!--                                        <input type="text" class="form-control" name="last_name"/>-->
                                     </div>
                                 </div>
 
@@ -76,12 +84,8 @@
                                     <label class="col-sm-4 col-form-label">Пол*</label>
                                     <div class="col-sm-8">
                                         <div class="custom-control custom-radio custom-control-inline pb-0">
-                                            <input
-                                                    type="radio"
-                                                    id="male"
-                                                    name="gender"
-                                                    class="custom-control-input"
-                                            />
+                                            {{ form.gender(type="radio", class="form-control", placeholder="qwe") }}
+                                            <input type="radio" id="male" name="gender" class="custom-control-input"/>
                                             <label class="custom-control-label" for="male">Муж</label>
                                         </div>
                                         <div class="custom-control custom-radio custom-control-inline pb-0">
@@ -91,12 +95,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Город*</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" name="city"/>
-                                    </div>
-                                </div>
+<!--                                <div class="form-group row">-->
+<!--                                    <label class="col-sm-4 col-form-label">Город*</label>-->
+<!--                                    <div class="col-sm-8">-->
+<!--                                        <input type="text" class="form-control" name="city"/>-->
+<!--                                    </div>-->
+<!--                                </div>-->
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Город*</label>
                                     <div class="col-sm-8">

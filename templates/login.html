@@ -30,15 +30,16 @@
                         <h2 class="text-center text-primary">Авторизация</h2>
                     </div>
                     <form method="post" action="login">
+                        {{ form.hidden_tag() }}
                         <div class="input-group custom">
-                            <input type="text" class="form-control form-control-lg" placeholder="Email" name="email"/>
+                            {{ form.email(type="email", class="form-control form-control-lg", placeholder="qwe") }}
                             <div class="input-group-append custom">
                                 <span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
                             </div>
                         </div>
                         <div class="input-group custom">
-                            <input type="password" class="form-control form-control-lg" placeholder="**********"
-                                   name="password"/>
+                            {{ form.password(type="password", class="form-control form-control-lg",
+                            placeholder="**********") }}
                             <div class="input-group-append custom">
                                 <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
                             </div>
@@ -46,8 +47,9 @@
                         <div class="row pb-30">
                             <div class="col-6">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1" name="check"/>
-                                    <label class="custom-control-label" for="customCheck1">Запомнить меня</label>
+                                    {{ form.remember_me(class="custom-control-input", id="customCheck1") }}
+
+                                    <label class="custom-control-label" for="customCheck1">{{ form.remember_me.label }}</label>
                                 </div>
                             </div>
                             <div class="col-6">
@@ -56,6 +58,7 @@
                                 </div>
                             </div>
                         </div>
+                        <div>{{ message }}</div>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="input-group mb-0">

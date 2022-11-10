@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, make_response, session
+from flask import Flask, render_template, request, redirect
 import sqlite3
 from static.database import db_session
 from static.database.User import User
@@ -6,6 +6,7 @@ from static.database.Categories import Categories
 from flask_login import LoginManager, login_user
 
 from static.vendors.p_scripts.Login import LoginForm
+from static.vendors.p_scripts.Register import RegisterForm
 
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -50,32 +51,28 @@ def contacts():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    # form = LoginForm()
-    # if form.validate_on_submit():
-    #     db_sess = db_session.create_session()
-    #     user = db_sess.query(User).filter(User.email == form.email.data).first()
-    #     if user and user.check_password(form.password.data):
-    #         login_user(user, remember=form.remember_me.data)
-    #         return redirect("/")
-    #     return render_template('login.html',
-    #                            message="Неправильный логин или пароль",
-    #                            form=form)
-    # return render_template('login.html', title='Авторизация', form=form)
+    print('я тут!!!!!')
+    form = LoginForm()
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        user = db_sess.query(User).filter(User.email_user == form.email.data).first()
+        if user and user.check_password(form.password.data):
+            login_user(user, remember=form.remember_me.data)
+            return redirect("/")
+        return render_template('login.html',
+                               message="Неправильный логин или пароль",
+                               form=form)
+    return render_template('login.html', title='Авторизация', form=form)
 
 
-    if request.method == 'GET':
-        return render_template('login.html', title='Авторизация')
-    elif request.method == 'POST':
-        print(request.form['email'])
-        print(request.form['password'])
-        print(request.form['check'])
-        return render_template('index.html', title='Главная', page='index', categories=categories())
+
 
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
+    form = RegisterForm()
     if request.method == 'GET':
-        return render_template('register.html', title='Регистрация')
+        return render_template('register.html', title='Регистрация', form=form)
     if request.method == 'POST':
         if request.form['password'] == request.form['r_password']:
             db_sess = db_session.create_session()
@@ -87,10 +84,11 @@ def register():
                 user.first_name_user = request.form['first_name']
                 user.last_name_user = request.form['last_name']
                 user.gender_user = request.form['gender']
+                user.set_password(form.password.data)
                 db_sess.add(user)
                 db_sess.commit()
 
-                return render_template('login.html', title='Авторизация')
+                return login()
             else:
                 return render_template('register.html', title='Регистрация', error_email='border-color: red;')
         else:

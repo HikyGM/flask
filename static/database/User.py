@@ -1,4 +1,6 @@
 import sqlalchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+
 from .db_session import SqlAlchemyBase
 from flask_login import UserMixin
 
@@ -15,3 +17,9 @@ class User(SqlAlchemyBase, UserMixin):
     age_user = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     gender_user = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     path_im_user = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+
+    def set_password(self, password):
+        self.hashed_password = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.hashed_password, password)

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'head.html' %}
+    <link rel="stylesheet" type="text/css"
+          href="{{url_for('static', filename='/src/plugins/jquery-steps/jquery.steps.css')}}"/>
+</head>
+
+<body class="login-page">
+<div class="login-header box-shadow">
+    <div
+            class="container-fluid d-flex justify-content-between align-items-center"
+    >
+        <div class="brand-logo">
+            <a href="login.html">
+                <img src="static/vendors/images/deskapp-logo.svg" alt=""/>
+            </a>
+        </div>
+        <div class="login-menu">
+            <ul>
+                <li><a href="login">Вход</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="register-page-wrap d-flex align-items-center flex-wrap justify-content-center">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 col-lg-7">
+                <img src="static/vendors/images/register-page-img.png" alt=""/>
+            </div>
+            <div class="col-md-6 col-lg-5">
+                <div class="register-box bg-white box-shadow border-radius-10">
+                    <div class="wizard-content">
+                        <form class="tab-wizard2 wizard-circle wizard" method="post" action="register">
+                            <div class="form-wrap max-width-600 mx-auto">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Email*</label>
+                                    <div class="col-sm-8">
+                                        <input type="email" class="form-control" name="email" style="{{error_email}}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Логин*</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="login"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Пароль*</label>
+                                    <div class="col-sm-8">
+                                        <input type="password" class="form-control" name="password" style="{{ error_pass }}" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Подтвердите пароль*</label>
+                                    <div class="col-sm-8">
+                                        <input type="password" class="form-control" name="r_password" style="{{ error_pass }}" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Имя*</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="first_name"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Фамилия*</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="last_name"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row align-items-center">
+                                    <label class="col-sm-4 col-form-label">Пол*</label>
+                                    <div class="col-sm-8">
+                                        <div class="custom-control custom-radio custom-control-inline pb-0">
+                                            <input
+                                                    type="radio"
+                                                    id="male"
+                                                    name="gender"
+                                                    class="custom-control-input"
+                                            />
+                                            <label class="custom-control-label" for="male">Муж</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline pb-0">
+                                            <input type="radio" id="female" name="gender"
+                                                   class="custom-control-input"/>
+                                            <label class="custom-control-label" for="female">Жен</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Город*</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="city"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Город*</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group mb-0">
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block">Вход</button>
+                                            <!--<a class="btn btn-primary btn-lg btn-block" href="index.html">Вход</a>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include 'scripts.html' %}
+<script src="{{url_for('static', filename='/src/plugins/jquery-steps/jquery.steps.js')}}"></script>
+<script src="{{url_for('static', filename='/vendors/scripts/steps-setting.js')}}"></script>
+</body>
+</html>

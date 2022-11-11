@@ -16,10 +16,11 @@ class User(SqlAlchemyBase, UserMixin):
     last_name_user = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     age_user = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     gender_user = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    path_im_user = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    path_im_user = sqlalchemy.Column(sqlalchemy.String, nullable=True, default='up.png')
+    id = id_user
 
     def set_password(self, password):
-        self.hashed_password = generate_password_hash(password)
+        self.password_user = generate_password_hash(password)
 
     def check_password(self, password):
-        return check_password_hash(self.hashed_password, password)
+        return check_password_hash(self.password_user, password)

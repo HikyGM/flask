@@ -10,5 +10,6 @@ class RegisterForm(FlaskForm):
     password_again = PasswordField('Повторите пароль', validators=[DataRequired()])
     first_name = StringField('Логин', validators=[DataRequired()])
     last_name = StringField('Логин', validators=[DataRequired()])
-    gender = RadioField('Логин', validators=[DataRequired()])
+    genders = RadioField('Логин', validators=[DataRequired()],
+                        choices=[('male', 'МУЖ'), ('female', 'ЖЕН')])
     submit = SubmitField('Войти')

@@ -90,27 +90,35 @@
 
 
         <div class="user-info-dropdown">
-            <div class="login-menu">
-					<ul>
-						<li><a href="login">Вход</a></li>
-                        <li><a href="register">Регистрация</a></li>
-					</ul>
 
-				</div>
-<!--            <div class="dropdown">-->
-<!--                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">-->
-<!--            							<span class="user-icon">-->
-<!--            								<img src="static/vendors/images/users_profile_im/photo1.jpg" alt=""/>-->
-<!--            							</span>-->
-<!--                    <span class="user-name">Ross C. Lopez</span>-->
-<!--                </a>-->
-<!--                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">-->
-<!--                    <a class="dropdown-item" href="profile.html"> <i class="dw dw-user1"></i> Profile</a>-->
-<!--                    <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>-->
-<!--                    <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>-->
-<!--                    <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>-->
-<!--                </div>-->
-<!--            </div>-->
+            {% if current_user.is_authenticated %}
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+							<span class="user-icon">
+								<img src="static/vendors/images/users_profile_im/{{current_user.path_im_user}}" alt="">
+							</span>
+                    <span class="user-name">{{ current_user.first_name_user }} {{ current_user.last_name_user }}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list" style="">
+                    <a class="dropdown-item" href="profile"><i class="dw dw-user1"></i> Профиль</a>
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
+                    <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
+                    <a class="dropdown-item" href="logout"><i class="dw dw-logout"></i> Выход</a>
+                </div>
+            </div>
+
+
+            {% else %}
+            <div class="user-name" style="text-align: center;">
+
+                <ul>
+                    <li><a href="login">Вход</a></li>
+                    <li><a href="register">Регистрация</a></li>
+                </ul>
+            </div>
+            {% endif %}
+
+
         </div>
 
     </div>

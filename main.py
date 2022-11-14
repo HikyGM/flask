@@ -1,5 +1,3 @@
-import os
-
 from flask import Flask, render_template, request, redirect
 import sqlite3
 from static.database import db_session
@@ -118,8 +116,7 @@ def gallery():
 
 def main():
     db_session.global_init("static/database/database.db")
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(port=8080, host='127.0.0.1')
 
 
 def categories():

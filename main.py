@@ -47,7 +47,8 @@ def contacts():
 
 @app.route('/profile')
 def profile():
-    return render_template('index.html', title='Профиль', page='profile')
+    form = RegisterForm()
+    return render_template('index.html', title='Профиль', page='profile', form=form)
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -85,42 +86,16 @@ def register():
             first_name_user=form.first_name.data,
             last_name_user=form.last_name.data,
             gender_user=form.genders.data,
+            age_user=form.age.data,
+            phone_number=form.phone_number.data,
+            city_user=form.city.data,
         )
         user.set_password(form.password.data)
         db_sess.add(user)
         db_sess.commit()
         return redirect('/login')
     return render_template('register.html', title='Регистрация', form=form)
-    # if request.method == 'GET':
-    #     return render_template('register.html', title='Регистрация', form=form)
-    # if request.method == 'POST':
-    #     if request.form['password'] == request.form['password_again']:
-    #         db_sess = db_session.create_session()
-    #         if not db_sess.query(User).filter(User.email_user == request.form['email']).first():
-    #             user = User()
-    #             print(request.form['email'])
-    #             print(request.form['login'])
-    #             print(request.form['password'])
-    #             print(request.form['first_name'])
-    #             print(request.form['last_name'])
-    #             print(request.form['genders'])
-    #
-    #             user.email_user = request.form['email']
-    #             user.login_user = request.form['login']
-    #             user.password_user = user.set_password(request.form['password'])
-    #
-    #             user.first_name_user = request.form['first_name']
-    #             user.last_name_user = request.form['last_name']
-    #             user.gender_user = request.form['genders']
-    #             user.set_password(form.password.data)
-    #             db_sess.add(user)
-    #             db_sess.commit()
-    #
-    #             return login()
-    #         else:
-    #             return render_template('register.html', title='Регистрация', error_email='border-color: red;')
-    #     else:
-    #         return render_template('register.html', title='Регистрация', error_pass='border-color: red;')
+
 
 
 @app.route('/logout')

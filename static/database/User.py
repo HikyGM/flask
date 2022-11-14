@@ -17,6 +17,8 @@ class User(SqlAlchemyBase, UserMixin):
     age_user = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     gender_user = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     path_im_user = sqlalchemy.Column(sqlalchemy.String, nullable=True, default='up.png')
+    phone_number = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    city_user = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     id = id_user
 
     def set_password(self, password):

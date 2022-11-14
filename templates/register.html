@@ -34,44 +34,45 @@
                             {{ form.hidden_tag() }}
                             <div class="form-wrap max-width-600 mx-auto">
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Email*</label>
+                                    {{ form.email.label(class="col-sm-4 col-form-label") }}
                                     <div class="col-sm-8">
-                                        {{ form.email(type="email", class="form-control", placeholder="qwe") }}
+                                        {{ form.email(type="email", class="form-control", placeholder="Почта") }}
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Логин*</label>
+                                    {{ form.login.label(class="col-sm-4 col-form-label") }}
                                     <div class="col-sm-8">
-                                        {{ form.login(type="text", class="form-control", placeholder="qwe") }}
+                                        {{ form.login(type="text", class="form-control", placeholder="Логин") }}
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Пароль*</label>
+                                    {{ form.password.label(class="col-sm-4 col-form-label") }}
                                     <div class="col-sm-8">
-                                        {{ form.password(type="password", class="form-control", placeholder="qwe") }}
+                                        {{ form.password(type="password", class="form-control", placeholder="Пароль") }}
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Подтвердите пароль*</label>
+                                    {{ form.password_again.label(class="col-sm-4 col-form-label") }}
                                     <div class="col-sm-8">
-                                        {{ form.password_again(type="password", class="form-control", placeholder="qwe")
+                                        {{ form.password_again(type="password", class="form-control",
+                                        placeholder="Подтвердите пароль")
                                         }}
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Имя*</label>
+                                    {{ form.first_name.label(class="col-sm-4 col-form-label") }}
                                     <div class="col-sm-8">
-                                        {{ form.first_name(type="text", class="form-control", placeholder="qwe") }}
+                                        {{ form.first_name(type="text", class="form-control", placeholder="Имя") }}
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Фамилия*</label>
+                                    {{ form.last_name.label(class="col-sm-4 col-form-label") }}
                                     <div class="col-sm-8">
-                                        {{ form.last_name(type="text", class="form-control", placeholder="qwe") }}
+                                        {{ form.last_name(type="text", class="form-control", placeholder="Фамилия") }}
                                     </div>
                                 </div>
                                 <div class="form-group row align-items-center">
-                                    <label class="col-sm-4 col-form-label">Пол*</label>
+                                    {{ form.genders.label(class="col-sm-4 col-form-label") }}
                                     <div class="col-sm-8">
                                         {% for gender in form.genders %}
                                         <div class="custom-control custom-radio custom-control-inline pb-0">
@@ -80,6 +81,24 @@
                                         </div>
                                         {% endfor %}
 
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    {{ form.city.label(class="col-sm-4 col-form-label") }}
+                                    <div class="col-sm-8">
+                                        {{ form.city(type="text", class="form-control", placeholder="Город") }}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    {{form.age.label(class="col-sm-4 col-form-label")}}
+                                    <div class="col-sm-8">
+                                        {{ form.age(class="form-control", placeholder="Дата рождения") }}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    {{form.phone_number.label(class="col-sm-4 col-form-label")}}
+                                    <div class="col-sm-8">
+                                        {{ form.phone_number(class="form-control", placeholder="Номер телефона") }}
                                     </div>
                                 </div>
 

@@ -1,17 +1,20 @@
 from flask import Flask, render_template, redirect
-import sqlite3
+from flask_login import LoginManager, login_user, login_required, logout_user
+
 from static.database import db_session
+
+from static.database.Gallery import Gallery
 from static.database.Main_menu import Main_menu
 from static.database.User import User
 from static.database.Categories import Categories
-from flask_login import LoginManager, login_user, login_required, logout_user
+
 from static.vendors.forms.Login import LoginForm
 from static.vendors.forms.Register import RegisterForm
 
-app = Flask(__name__)
+application = Flask(__name__)
 login_manager = LoginManager()
-login_manager.init_app(app)
-app.config['SECRET_KEY'] = 'bfy45ue7iuyilutgbkwycu4b7e46ytwu4etriuw34yiuitwyeiut54'
+login_manager.init_app(application)
+application.config['SECRET_KEY'] = 'bfy45ue7iuyilutgbkwycu4b7e46ytwu4etriuw34yiuitwyeiut54'
 
 
 def categories():
@@ -31,62 +34,67 @@ def main_menu():
     return menu_dict
 
 
+def rend(url, title, page, **kwargs):
+    return render_template(url, title=title, page=page, main_menu=main_menu(), **kwargs)
+
+
 @login_manager.user_loader
 def load_user(user_id):
     db_sess = db_session.create_session()
     return db_sess.query(User).get(user_id)
 
 
-@app.errorhandler(404)
+@application.errorhandler(404)
 def http_404_handler(error):
     return render_template('error_pages/404.html'), 404
 
 
-@app.route('/user/<int:user_id>/')
+@application.route('/user/<int:user_id>/')
 def user_profile(user_id):
     return "Profile page of user #{}".format(user_id)
 
 
-def rend(url, title, page, **kwargs):
-    return render_template(url, title=title, page=page, main_menu=main_menu(), **kwargs)
-
-
-@app.route('/')
-@app.route('/index')
+@application.route('/')
+@application.route('/index')
 def index():
+    main()
     return rend('index.html', 'Главная', 'index', categories=categories())
 
 
-@app.route('/calendar')
+@application.route('/calendar')
 def calendar():
     return rend('index.html', 'Запись', 'calendar')
 
 
-@app.route('/contacts')
+@application.route('/contacts')
 def contacts():
     return rend('index.html', 'Контакты', 'contacts')
 
 
-@app.route('/profile')
+@application.route('/profile')
 def profile():
     form = RegisterForm()
     return rend('index.html', 'Профиль', 'profile', form=form)
 
 
-@app.route('/login', methods=['POST', 'GET'])
+@application.route('/login', methods=['POST', 'GET'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(User.email_user == form.email.data).first()
-        if user and user.check_password(form.password.data):
-            login_user(user, remember=form.remember_me.data)
-            return redirect("/")
-        return rend('login.html', 'Авторизация', 'login', message="Неправильный логин или пароль", form=form)
+        if user:
+            if user.check_password(form.password.data):
+                login_user(user, remember=form.remember_me.data)
+                return redirect("/")
+            else:
+                return rend('login.html', 'Авторизация', 'login', message=f"Неправильный пароль '{form.password.data}'", form=form)
+        else:
+            return rend('login.html', 'Авторизация', 'login', message="Неправильный логин", form=form)
     return rend('login.html', 'Авторизация', 'login', form=form)
 
 
-@app.route('/register', methods=['POST', 'GET'])
+@application.route('/register', methods=['POST', 'GET'])
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
@@ -114,26 +122,23 @@ def register():
     return rend('register.html', 'Регистрация', 'register', form=form)
 
 
-@app.route('/logout')
+@application.route('/logout')
 @login_required
 def logout():
     logout_user()
     return redirect("/")
 
 
-@app.route('/gallery')
+@application.route('/gallery')
 def gallery():
-    con = sqlite3.connect('static/database/database.db')
-    cur = con.cursor()
-    query = 'SELECT path_im FROM gallery'
-    res = cur.execute(query).fetchall()
+    db_sess = db_session.create_session()
+    res = db_sess.query(Gallery).all()
     return rend('index.html', 'Галлерея', 'gallery', gallery=res)
 
 
 def main():
-    db_session.global_init("static/database/database.db")
-    app.run(port=8080, host='127.0.0.1')
+    db_session.global_init()
 
 
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    application.run(host='0.0.0.0')

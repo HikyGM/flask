@@ -9,16 +9,16 @@ class User(SqlAlchemyBase, UserMixin):
     __tablename__ = 'users'
 
     id_user = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
-    login_user = sqlalchemy.Column(sqlalchemy.String, nullable=True)  # unique=True,
-    password_user = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    email_user = sqlalchemy.Column(sqlalchemy.String, index=True, unique=True, nullable=True)
-    first_name_user = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    last_name_user = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    login_user = sqlalchemy.Column(sqlalchemy.String(50), nullable=True)  # unique=True,
+    password_user = sqlalchemy.Column(sqlalchemy.String(256), nullable=True)
+    email_user = sqlalchemy.Column(sqlalchemy.String(50), index=True, unique=True, nullable=True)
+    first_name_user = sqlalchemy.Column(sqlalchemy.String(50), nullable=True)
+    last_name_user = sqlalchemy.Column(sqlalchemy.String(50), nullable=True)
     age_user = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
-    gender_user = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    path_im_user = sqlalchemy.Column(sqlalchemy.String, nullable=True, default='up.png')
-    phone_number = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    city_user = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    gender_user = sqlalchemy.Column(sqlalchemy.String(50), nullable=True)
+    path_im_user = sqlalchemy.Column(sqlalchemy.String(50), nullable=True, default='up.png')
+    phone_number = sqlalchemy.Column(sqlalchemy.String(50), nullable=True)
+    city_user = sqlalchemy.Column(sqlalchemy.String(50), nullable=True)
     id = id_user
 
     def set_password(self, password):

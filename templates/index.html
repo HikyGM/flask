@@ -20,15 +20,14 @@
 <div class="mobile-menu-overlay"></div>
 
 
-<!--{% block content %}{% endblock %}-->
 {% if page == 'index' %}
-{% include 'pages/main.html' %}
+    {% include 'pages/main.html' %}
 {% elif page == 'calendar' %}
-{% include 'pages/calendar.html' %}
+    {% include 'pages/calendar.html' %}
 {% elif page == 'contacts' %}
-{% include 'pages/contacts.html' %}
+    {% include 'pages/contacts.html' %}
 {% elif page == 'gallery' %}
-{% include 'pages/gallery.html' %}
+    {% include 'pages/gallery.html' %}
 {% elif page == 'profile' %}
     {% if current_user.is_authenticated %}
         {% include 'pages/profile.html' %}
@@ -36,9 +35,9 @@
         {% include 'pages/main.html' %}
     {% endif %}
 {% else %}
-{% include 'pages/main.html' %}
+    {% include 'pages/main.html' %}
 {% endif %}
-
+{{ msg }}
 
 {% include 'scripts.html' %}
 </body>

@@ -1,4 +1,1 @@
-from . import User
-from . import Gallery
-from . import Categories
-from . import Main_menu
+from . import User, Gallery, Categories, Main_menu, Blog, Type_users

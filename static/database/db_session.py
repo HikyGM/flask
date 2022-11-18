@@ -11,7 +11,7 @@ def global_init():
     global __factory
     if __factory:
         return
-    conn_str = "mysql+pymysql://u1835076_default:Ng6ULk3tM1lwYpw8@localhost/u1835076_flask_db"
+    conn_str = "mysql+pymysql://admin:admin@localhost/u1835076_flask_db"
     engine = sa.create_engine(conn_str)
     __factory = orm.sessionmaker(bind=engine)
     # noinspection PyUnresolvedReferences

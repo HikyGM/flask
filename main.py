@@ -1,12 +1,11 @@
 from flask import Flask, render_template, redirect
 from flask_login import LoginManager, login_user, login_required, logout_user
 
-from static.database import db_session
-
 from static.database.Gallery import Gallery
 from static.database.Main_menu import Main_menu
 from static.database.User import User
-from static.database.Categories import Categories
+from static.database import db_session
+from static.database.Blog import Blog
 
 from static.vendors.forms.Login import LoginForm
 from static.vendors.forms.Register import RegisterForm
@@ -17,9 +16,9 @@ login_manager.init_app(application)
 application.config['SECRET_KEY'] = 'bfy45ue7iuyilutgbkwycu4b7e46ytwu4etriuw34yiuitwyeiut54'
 
 
-def categories():
+def posts():
     db_sess = db_session.create_session()
-    return db_sess.query(Categories).all()
+    return db_sess.query(Blog).order_by(Blog.id_post.desc())
 
 
 def main_menu():
@@ -58,7 +57,7 @@ def user_profile(user_id):
 @application.route('/index')
 def index():
     main()
-    return rend('index.html', 'Главная', 'index', categories=categories())
+    return rend('index.html', 'Главная', 'index', posts=posts())
 
 
 @application.route('/calendar')
@@ -74,6 +73,9 @@ def contacts():
 @application.route('/profile')
 def profile():
     form = RegisterForm()
+    db_sess = db_session.create_session()
+    user = db_sess.query(User).first()
+    print(user.type_u.title_type)
     return rend('index.html', 'Профиль', 'profile', form=form)
 
 
@@ -88,7 +90,8 @@ def login():
                 login_user(user, remember=form.remember_me.data)
                 return redirect("/")
             else:
-                return rend('login.html', 'Авторизация', 'login', message=f"Неправильный пароль '{form.password.data}'", form=form)
+                return rend('login.html', 'Авторизация', 'login', message=f"Неправильный пароль '{form.password.data}'",
+                            form=form)
         else:
             return rend('login.html', 'Авторизация', 'login', message="Неправильный логин", form=form)
     return rend('login.html', 'Авторизация', 'login', form=form)

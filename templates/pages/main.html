@@ -30,21 +30,140 @@
         </div>
 
         <div class="row">
-            {% for category in categories %}
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-30">
-                <div class="card card-box text-center">
-                    <img class="card-img-top" src="{{ category.path_im_category }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ category.title_category }}</h5>
-                        <p class="card-text">
-                            {{ category.comm_category }}
-                        </p>
-                        <a href="{{ category.url_category }}" class="btn btn-primary">Узнать больше</a>
+
+
+            <div class="col-md-8 col-sm-12">
+                <div class="blog-list">
+                    <ul>
+                        {% for post in posts %}
+                        <li>
+                            <div class="row no-gutters">
+                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                    <div class="blog-img"
+                                         style="background: url({{ post.path_im_post }}) center center no-repeat;">
+                                        <img src="{{ post.path_im_post }}" alt="" class="bg_img"
+                                             style="display: none;">
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-12 col-sm-12">
+                                    <div class="blog-caption">
+                                        <h4>
+                                            <a href="#">{{ post.title_post }}</a>
+                                        </h4>
+                                        Автор: {{ post.author_post }} Дата: {{ post.data_time_post }}
+                                        <div class="blog-by">
+                                            <p>
+                                                {{ post.text_post }}
+                                            </p>
+                                            <div class="pt-10">
+                                                <a href="{{ post.url_post }}" class="btn btn-outline-primary">Узнать
+                                                    больше</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+                <div class="blog-pagination">
+                    <div class="btn-toolbar justify-content-center mb-15">
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-outline-primary prev"><i class="fa fa-angle-double-left"></i></a>
+                            <a href="#" class="btn btn-outline-primary">1</a>
+                            <a href="#" class="btn btn-outline-primary">2</a>
+                            <span class="btn btn-primary current">3</span>
+                            <a href="#" class="btn btn-outline-primary">4</a>
+                            <a href="#" class="btn btn-outline-primary">5</a>
+                            <a href="#" class="btn btn-outline-primary next"><i
+                                    class="fa fa-angle-double-right"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
-            {% endfor %}
+
+            <div class="col-md-4 col-sm-12">
+                <div class="title pb-20 pt-20">
+                    <h2 class="h3 mb-0">Блок с инфой</h2>
+                </div>
+<!--                <div class="card-box mb-30">-->
+<!--                    <h5 class="pd-20 h5 mb-0">Categories</h5>-->
+<!--                    <div class="list-group">-->
+<!--                        <a href="#" class="list-group-item d-flex align-items-center justify-content-between">HTML-->
+<!--                            <span class="badge badge-primary badge-pill">7</span></a>-->
+<!--                        <a href="#" class="list-group-item d-flex align-items-center justify-content-between">Css-->
+<!--                            <span class="badge badge-primary badge-pill">10</span></a>-->
+<!--                        <a href="#" class="list-group-item d-flex align-items-center justify-content-between active">Bootstrap-->
+<!--                            <span class="badge badge-primary badge-pill">8</span></a>-->
+<!--                        <a href="#" class="list-group-item d-flex align-items-center justify-content-between">jQuery-->
+<!--                            <span class="badge badge-primary badge-pill">15</span></a>-->
+<!--                        <a href="#" class="list-group-item d-flex align-items-center justify-content-between">Design-->
+<!--                            <span class="badge badge-primary badge-pill">5</span></a>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+                <div class="card-box mb-30">
+                    <h5 class="pd-20 h5 mb-0">Latest Post</h5>
+                    <div class="latest-post">
+                        <ul>
+                            <li>
+                                <h4>
+                                    <a href="#">Ut enim ad minim veniam, quis nostrud
+                                        exercitation ullamco</a>
+                                </h4>
+                                <span>HTML</span>
+                            </li>
+                            <li>
+                                <h4>
+                                    <a href="#">Lorem ipsum dolor sit amet, consectetur
+                                        adipisicing elit</a>
+                                </h4>
+                                <span>Css</span>
+                            </li>
+                            <li>
+                                <h4>
+                                    <a href="#">Ut enim ad minim veniam, quis nostrud
+                                        exercitation ullamco</a>
+                                </h4>
+                                <span>jQuery</span>
+                            </li>
+                            <li>
+                                <h4>
+                                    <a href="#">Lorem ipsum dolor sit amet, consectetur
+                                        adipisicing elit</a>
+                                </h4>
+                                <span>Bootstrap</span>
+                            </li>
+                            <li>
+                                <h4>
+                                    <a href="#">Lorem ipsum dolor sit amet, consectetur
+                                        adipisicing elit</a>
+                                </h4>
+                                <span>Design</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+<!--                <div class="card-box overflow-hidden">-->
+<!--                    <h5 class="pd-20 h5 mb-0">Archives</h5>-->
+<!--                    <div class="list-group">-->
+<!--                        <a href="#" class="list-group-item d-flex align-items-center justify-content-between">January-->
+<!--                            2020</a>-->
+<!--                        <a href="#" class="list-group-item d-flex align-items-center justify-content-between">February-->
+<!--                            2020</a>-->
+<!--                        <a href="#" class="list-group-item d-flex align-items-center justify-content-between">March-->
+<!--                            2020</a>-->
+<!--                        <a href="#" class="list-group-item d-flex align-items-center justify-content-between">April-->
+<!--                            2020</a>-->
+<!--                        <a href="#" class="list-group-item d-flex align-items-center justify-content-between">May-->
+<!--                            2020</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
         </div>
+
 
         <div class="footer-wrap pd-20 mb-20 card-box">
             DeskApp - Bootstrap 4 Admin Template By

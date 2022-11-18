@@ -1,6 +1,6 @@
 import sqlalchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from sqlalchemy import orm
 from .db_session import SqlAlchemyBase
 from flask_login import UserMixin
 
@@ -19,6 +19,9 @@ class User(SqlAlchemyBase, UserMixin):
     path_im_user = sqlalchemy.Column(sqlalchemy.String(50), nullable=True, default='up.png')
     phone_number = sqlalchemy.Column(sqlalchemy.String(50), nullable=True)
     city_user = sqlalchemy.Column(sqlalchemy.String(50), nullable=True)
+    type_user = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('type_users.id_type'))
+    type_u = orm.relation('Type_users')
+    blog = orm.relation("Blog", back_populates='author')
     id = id_user
 
     def set_password(self, password):
@@ -26,3 +29,4 @@ class User(SqlAlchemyBase, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password_user, password)
+

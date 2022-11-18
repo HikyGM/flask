@@ -9,5 +9,5 @@ class Categories(SqlAlchemyBase):
     title_category = sqlalchemy.Column(sqlalchemy.String(50), unique=True, nullable=True)
     url_category = sqlalchemy.Column(sqlalchemy.String(50), nullable=True)
     path_im_category = sqlalchemy.Column(sqlalchemy.String(50), nullable=True)
-    comm_category = sqlalchemy.Column(sqlalchemy.String(50), nullable=True)
+    comm_category = sqlalchemy.Column(sqlalchemy.Text, nullable=True)
 

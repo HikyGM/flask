@@ -28,6 +28,8 @@
     {% include 'pages/contacts.html' %}
 {% elif page == 'gallery' %}
     {% include 'pages/gallery.html' %}
+{% elif page == 'pricing' %}
+    {% include 'pages/pricing.html' %}
 {% elif page == 'profile' %}
     {% if current_user.is_authenticated %}
         {% include 'pages/profile.html' %}

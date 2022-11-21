@@ -64,6 +64,10 @@ def index():
 def calendar():
     return rend('index.html', 'Запись', 'calendar')
 
+@application.route('/pricing')
+def pricing():
+    return rend('index.html', 'Цены', 'pricing')
+
 
 @application.route('/contacts')
 def contacts():

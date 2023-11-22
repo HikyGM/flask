@@ -79,7 +79,6 @@ def profile():
     form = RegisterForm()
     db_sess = db_session.create_session()
     user = db_sess.query(User).first()
-    print(user.type_u.title_type)
     return rend('index.html', 'Профиль', 'profile', form=form)
 
 

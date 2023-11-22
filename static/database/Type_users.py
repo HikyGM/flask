@@ -7,4 +7,4 @@ class Type_users(SqlAlchemyBase):
 
     id_type = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     title_type = sqlalchemy.Column(sqlalchemy.String(20), unique=True, nullable=True)
-    user = orm.relation("User", back_populates='type_u')
+    user = orm.relationship("User", back_populates='type_u')

@@ -20,8 +20,8 @@ class User(SqlAlchemyBase, UserMixin):
     phone_number = sqlalchemy.Column(sqlalchemy.String(50), nullable=True)
     city_user = sqlalchemy.Column(sqlalchemy.String(50), nullable=True)
     type_user = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('type_users.id_type'))
-    type_u = orm.relation('Type_users')
-    blog = orm.relation("Blog", back_populates='author')
+    type_u = orm.relationship('Type_users')
+    blog = orm.relationship("Blog", back_populates='author')
     id = id_user
 
     def set_password(self, password):

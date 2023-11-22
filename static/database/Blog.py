@@ -12,4 +12,4 @@ class Blog(SqlAlchemyBase):
     url_post = sqlalchemy.Column(sqlalchemy.String(150), nullable=True)
     path_im_post = sqlalchemy.Column(sqlalchemy.String(150), nullable=True)
     text_post = sqlalchemy.Column(sqlalchemy.Text, nullable=True)
-    author = orm.relation('User')
+    author = orm.relationship('User')

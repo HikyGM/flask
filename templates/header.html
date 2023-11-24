@@ -13,36 +13,20 @@
     </div>
     <div class="header-right">
 
+        {% if current_user.is_authenticated %}
         <div class="user-notification">
-            <div class="dropdown">
-                <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
-                    <i class="icon-copy dw dw-notification"></i>
-                    <span class="badge notification-active"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <div class="notification-list mx-h-350 customscroll">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <img src="{{url_for('static', filename='/vendors/images/img.jpg')}}" alt=""/>
-                                    <h3>John Doe</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
 
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <a class="dropdown-toggle no-arrow" href="/shopping_card" role="button" data-toggle="dropdown">
+                <i class="icon-copy dw dw-shopping-basket"></i>
+                Корзина
+            </a>
+
         </div>
 
 
         <div class="user-info-dropdown">
 
-            {% if current_user.is_authenticated %}
+
             <div class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
 							<span class="user-icon">

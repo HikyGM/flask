@@ -6,6 +6,8 @@ from static.database.Main_menu import Main_menu
 from static.database.User import User
 from static.database import db_session
 from static.database.Blog import Blog
+from static.database.Products import Products
+from static.database.Shopping_cart import Shopping_card
 
 from static.vendors.forms.Login import LoginForm
 from static.vendors.forms.Register import RegisterForm
@@ -63,6 +65,7 @@ def index():
 @application.route('/calendar')
 def calendar():
     return rend('index.html', 'Запись', 'calendar')
+
 
 @application.route('/pricing')
 def pricing():
@@ -140,6 +143,45 @@ def gallery():
     db_sess = db_session.create_session()
     res = db_sess.query(Gallery).all()
     return rend('index.html', 'Галлерея', 'gallery', gallery=res)
+
+
+@application.route('/products')
+def get_all_products():
+    db_sess = db_session.create_session()
+    res = db_sess.query(Products).all()
+    for elem in res:
+        print(elem)
+    return rend('index.html', 'Меню', 'products', products=res)
+
+
+@application.route('/products/<int:id_product>', methods=['GET'])
+def get_product(id_product):
+    db_sess = db_session.create_session()
+    res = db_sess.query(Products).filter(Products.id_products == id_product).first()
+    print(res)
+
+    return rend('index.html', 'Меню', 'product_info', product=res)
+
+
+@application.route('/products/<int:id_product>', methods=['POST'])
+def post_product(id_product):
+    db_sess = db_session.create_session()
+    add_card = Shopping_card(
+        id_user_card=1,
+        id_product=id_product
+    )
+    db_sess.add(add_card)
+    db_sess.commit()
+    return redirect('/products')
+
+
+@application.route('/shopping_card')
+def shopping_card():
+    db_sess = db_session.create_session()
+    res = db_sess.query(Shopping_card).filter(Shopping_card.id_user_card == 1)
+    r = db_sess.query(Products).filter(
+        Products.id_products.in_(db_sess.query(Shopping_card.id_product).filter(Shopping_card.id_user_card == 1))).all()
+    return rend('index.html', 'Корзина', 'shopping_card', products=r)
 
 
 def main():

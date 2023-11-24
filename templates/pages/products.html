@@ -1,0 +1,83 @@
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+
+
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="title">
+                            <h4>Меню</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="index.html">Главная</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Меню
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-wrap">
+                <div class="product-list">
+                    <ul class="row">
+
+                        {% for elem in products %}
+
+
+                        <li class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="product-box">
+                                <div class="producct-img">
+                                    <img src="static/vendors/images/products/{{ elem.path_im }}" alt="">
+                                </div>
+                                <div class="product-caption">
+                                    <h4><a href="/products/{{ elem.id_products }}">{{ elem.title_products }}</a></h4>
+                                    <div class="price">
+                                        <ins>{{ elem.cost_products }} руб.</ins>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-6">
+                                            <form action="/products/{{ elem.id_products }}">
+                                                <button formaction="/products/{{ elem.id_products }}" formmethod="post"
+                                                        class="btn btn-primary btn-block" formnovalidate>В корзину
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-6 col-6">
+                                            <a href="/products/{{ elem.id_products }}"
+                                               class="btn btn-outline-primary btn-block">Подробнее</a>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </li>
+
+                        {% endfor %}
+
+
+                    </ul>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+    <div class="footer-wrap pd-20 mb-20 card-box">
+        DeskApp - Bootstrap 4 Admin Template By
+        <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+    </div>
+</div>
+</div>

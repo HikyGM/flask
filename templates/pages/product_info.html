@@ -1,0 +1,88 @@
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="title">
+                            <h4>Product Detail</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Product Detail
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="product-wrap">
+                <div class="product-detail-wrap mb-30">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div class="product-slider slider-arrow slick-initialized slick-slider">
+                                <div class="slick-list draggable">
+                                    <div class="slick-track" style="opacity: 1; width: 2168px;">
+                                        <div class="product-slide slick-slide slick-current slick-active"
+                                             data-slick-index="0" aria-hidden="false"
+                                             style="width: 542px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"
+                                             tabindex="0">
+                                            <img src="/static/vendors/images/products/{{ product.path_im }}" alt="">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div class="product-detail-desc pd-20 card-box height-100-p">
+                                <h4 class="mb-20 pt-20">{{ product.title_products }}</h4>
+                                <p>
+                                    {{ product.text_products }}
+                                </p>
+
+                                <div class="price">
+                                    <ins>{{ product.cost_products }} руб.</ins>
+                                </div>
+                                <div class="mx-w-150">
+                                    <div class="form-group">
+                                        <label class="text-blue">Кол-во</label>
+                                        <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected"><span
+                                                class="input-group-btn input-group-prepend"><button
+                                                class="btn btn-primary bootstrap-touchspin-down"
+                                                type="button">-</button></span><input id="demo3_22" type="text"
+                                                                                      value="1" name="demo3_22"
+                                                                                      class="form-control"><span
+                                                class="input-group-btn input-group-append"><button
+                                                class="btn btn-primary bootstrap-touchspin-up" type="button">+</button></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-6">
+                                        <a href="#" class="btn btn-primary btn-block">Добавить в корзину</a>
+                                    </div>
+                                    <div class="col-md-6 col-6">
+                                        <a href="#" class="btn btn-outline-primary btn-block">Купить</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="footer-wrap pd-20 mb-20 card-box">
+            DeskApp - Bootstrap 4 Admin Template By
+            <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+        </div>
+    </div>
+</div>
